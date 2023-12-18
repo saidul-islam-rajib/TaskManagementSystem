@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Api", "TaskManager.Api\TaskManager.Api.csproj", "{0FB5F58B-C929-40F6-ABCF-8C0AEB2C2C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Api", "TaskManager.Api\TaskManager.Api.csproj", "{0FB5F58B-C929-40F6-ABCF-8C0AEB2C2C5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Application", "TaskManager.Application\TaskManager.Application.csproj", "{7810E7A8-9CF4-4AD0-A457-4B6213198C1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Application", "TaskManager.Application\TaskManager.Application.csproj", "{7810E7A8-9CF4-4AD0-A457-4B6213198C1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Contracts", "TaskManager.Contracts\TaskManager.Contracts.csproj", "{24129AA3-865B-498F-8E0F-3BB5365B6766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Contracts", "TaskManager.Contracts\TaskManager.Contracts.csproj", "{24129AA3-865B-498F-8E0F-3BB5365B6766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Domain", "TaskManager.Domain\TaskManager.Domain.csproj", "{DD498A6F-5BB4-472E-8053-21A096AE4FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Domain", "TaskManager.Domain\TaskManager.Domain.csproj", "{DD498A6F-5BB4-472E-8053-21A096AE4FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager.Infrastructure", "TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{9DA0F9CA-4656-4A4E-A519-939CEA0B4D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManager.Infrastructure", "TaskManager.Infrastructure\TaskManager.Infrastructure.csproj", "{9DA0F9CA-4656-4A4E-A519-939CEA0B4D7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{75017B27-256C-417C-B5F0-1DAC1B50295C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Weather", "Weather", "{66251418-6C6D-4631-BD07-15F775BDD0E7}"
+	ProjectSection(SolutionItems) = preProject
+		GetForecast.http = GetForecast.http
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0FB5F58B-C929-40F6-ABCF-8C0AEB2C2C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +46,14 @@ Global
 		{9DA0F9CA-4656-4A4E-A519-939CEA0B4D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DA0F9CA-4656-4A4E-A519-939CEA0B4D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DA0F9CA-4656-4A4E-A519-939CEA0B4D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66251418-6C6D-4631-BD07-15F775BDD0E7} = {75017B27-256C-417C-B5F0-1DAC1B50295C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1504B34F-074B-488C-BE02-075B0627543E}
 	EndGlobalSection
 EndGlobal
