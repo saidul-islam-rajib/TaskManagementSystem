@@ -1,9 +1,11 @@
-using TaskManager.Application.Services.AuthenticationService;
+using TaskManager.Application;
+using TaskManager.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 {
-    builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+    builder.Services.AddApplication()
+                    .AddInfrastructure();
     builder.Services.AddControllers();
 }
 
