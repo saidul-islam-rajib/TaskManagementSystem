@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -9,18 +10,20 @@ namespace TaskManager.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
+        private readonly Jwtsettings _jwtsettings;
         private readonly IDateTimeProvider _dateTimeProvider;
 
-        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider)
+        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<Jwtsettings> jwtOptions)
         {
             _dateTimeProvider = dateTimeProvider;
+            _jwtsettings = jwtOptions.Value;
         }
 
         public string GenerateToken(Guid userId, string firstName, string lastName)
         {
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes("a-secure-secret-key-with-at-least-32-characters")),
+                    Encoding.UTF8.GetBytes(_jwtsettings.Secret)),
                 SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -33,8 +36,9 @@ namespace TaskManager.Infrastructure.Authentication
 
             // Create the security token
             var securityToken = new JwtSecurityToken(
-                issuer:"Rajib",
-                expires: _dateTimeProvider.UtcNow.AddMinutes(60),
+                issuer:_jwtsettings.issuer,
+                audience: _jwtsettings.Audience,
+                expires: _dateTimeProvider.UtcNow.AddMinutes(_jwtsettings.ExpiryMinutes),
                 claims: claims,
                 signingCredentials:signingCredentials
                 );
