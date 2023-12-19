@@ -3,11 +3,19 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TaskManager.Application.Common.Interfaces.Authentication;
+using TaskManager.Application.Common.Interfaces.Services;
 
 namespace TaskManager.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
+        private readonly IDateTimeProvider _dateTimeProvider;
+
+        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider)
+        {
+            _dateTimeProvider = dateTimeProvider;
+        }
+
         public string GenerateToken(Guid userId, string firstName, string lastName)
         {
             var signingCredentials = new SigningCredentials(
@@ -26,7 +34,7 @@ namespace TaskManager.Infrastructure.Authentication
             // Create the security token
             var securityToken = new JwtSecurityToken(
                 issuer:"Rajib",
-                expires: DateTime.Now.AddDays(1),
+                expires: _dateTimeProvider.UtcNow.AddMinutes(60),
                 claims: claims,
                 signingCredentials:signingCredentials
                 );
