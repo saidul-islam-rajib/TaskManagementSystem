@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using TaskManager.Application.Common.Interfaces.Authentication;
 using TaskManager.Application.Services.AuthenticationService;
+using TaskManager.Infrastructure.Authentication;
 
 namespace TaskManager.Infrastructure
 {
@@ -7,7 +9,8 @@ namespace TaskManager.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            //services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             return services;
         }
     }

@@ -1,11 +1,21 @@
-﻿namespace TaskManager.Application.Services.AuthenticationService
+﻿using TaskManager.Application.Common.Interfaces.Authentication;
+
+namespace TaskManager.Application.Services.AuthenticationService
 {
     public class AuthenticationService : IAuthenticationService
     {
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+
+        public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator)
+        {
+            _jwtTokenGenerator = jwtTokenGenerator;
+        }
+
         public AuthenticationResult Login(
             string email,
             string password)
         {
+
             return new AuthenticationResult(
                 Guid.NewGuid(),
                 "firstname",
@@ -20,12 +30,20 @@
             string email,
             string password)
         {
+            // Going to check user already exits or not
+
+            // Create user if not exits
+
+            // Create JWT Token
+            Guid userId = Guid.NewGuid();
+            var token = _jwtTokenGenerator.GenerateToken(userId, firstName, lastName);
+
            return new AuthenticationResult(
-               Guid.NewGuid(),
+               userId,
                firstName,
                lastName,
                email,
-               "hard coded token for testing purpose");
+               token);
         }
     }
 }

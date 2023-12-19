@@ -4,8 +4,8 @@ POST {{host}}/auth/register
 Content-Type:application/json
 
 {
-  "firstName":"Rajib",
-  "lastName":"Ahmed",
+  "firstName":"Saidul Islam",
+  "lastName":"Rajib",
   "email":"saidul.is.rajib@gmail.com",
   "password":"Test@123"
 }
