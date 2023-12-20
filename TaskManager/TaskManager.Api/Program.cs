@@ -21,10 +21,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+{
+    app.UseExceptionHandler("/error");
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.Run();
+}
 
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
