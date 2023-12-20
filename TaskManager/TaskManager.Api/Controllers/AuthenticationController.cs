@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskManager.Application.Services.AuthenticationService;
+using TaskManager.Application.Services.AuthenticationService.Commands;
+using TaskManager.Application.Services.AuthenticationService.Queries;
 using TaskManager.Contracts.Authentication;
 
 namespace TaskManager.Api.Controllers
@@ -8,17 +9,21 @@ namespace TaskManager.Api.Controllers
     [Route("auth")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationCommandService _authenticationCommandService;
+        private readonly IAuthenticationQueryService _authenticationQueryService;
 
-        public AuthenticationController(IAuthenticationService authenticationService)
+        public AuthenticationController(
+            IAuthenticationCommandService authenticationService,
+            IAuthenticationQueryService authenticationQueryService = null)
         {
-            _authenticationService = authenticationService;
+            _authenticationCommandService = authenticationService;
+            _authenticationQueryService = authenticationQueryService;
         }
 
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            var authResult = _authenticationService.Register(
+            var authResult = _authenticationCommandService.Register(
                 request.FirstName,
                 request.LastName,
                 request.Email,
@@ -37,7 +42,7 @@ namespace TaskManager.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            var authResult = _authenticationService.Login(
+            var authResult = _authenticationQueryService.Login(
                 request.Email,
                 request.Password);
 
